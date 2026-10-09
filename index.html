@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="am" class="h-full bg-slate-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ክፍል 6 አካባቢ ሳይንስ - ምዕራፍ ሁለት፡ ሳይንስን መገንዘብ (100 ጥያቄዎች)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans Ethiopic', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans Ethiopic', 'Inter', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        .option-btn {
+            transition: all 0.2s ease-in-out;
+        }
+        /* Custom scrollbar for question jump grid */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="h-full text-slate-800 flex flex-col antialiased">
+
+    <!-- Header -->
+    <header class="bg-slate-900 text-white shadow-md sticky top-0 z-30">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <div class="bg-sky-500 text-white p-2 rounded-lg font-bold text-lg shadow-sm">
+                    ፮
+                </div>
+                <div>
+                    <h1 class="text-base md:text-lg font-bold leading-tight text-slate-100">ክፍል 6 አካባቢ ሳይንስ</h1>
+                    <p class="text-xs text-sky-400 font-medium">ምዕራፍ ሁለት፡ ሳይንስን መገንዘብ (100 ጥያቄዎች)</p>
+                </div>
+            </div>
+            
+            <div id="quizHeaderStats" class="hidden flex items-center space-x-4 space-x-reverse text-sm">
+                <div class="bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 flex items-center space-x-2 space-x-reverse">
+                    <span class="text-xs text-slate-400">ጊዜ፡</span>
+                    <span id="timerDisplay" class="font-mono text-sky-400 font-bold">00:00</span>
+                </div>
+                <button onclick="toggleGridModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg border border-slate-700 text-xs font-semibold flex items-center gap-1.5 transition">
+                    <svg class="w-4 h-4 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                    <span>ጥያቄዎች (100)</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-5xl w-full mx-auto p-4 md:p-6">
+
+        <!-- 1. START SCREEN / REGISTRATION -->
+        <section id="startScreen" class="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden max-w-2xl mx-auto my-6 transition-all duration-300">
+            <div class="bg-gradient-to-r from-sky-700 to-indigo-800 p-6 md:p-8 text-white text-center">
+                <div class="inline-block bg-white/10 px-4 py-1 rounded-full text-xs font-medium text-sky-200 mb-3 tracking-wide">
+                    የተማሪዎች ምዘና ፈተና
+                </div>
+                <h2 class="text-2xl md:text-3xl font-extrabold mb-2">ክፍል 6 አካባቢ ሳይንስ ምዘና</h2>
+                <p class="text-sky-100 text-sm max-w-md mx-auto">ምዕራፍ ሁለት፡ ሳይንስን መገንዘብ የተዘጋጁ 100 አጠቃላይ የብዙ ምርጫ ጥያቄዎችና ማብራሪያዎች</p>
+            </div>
+
+            <form id="studentRegistrationForm" onsubmit="startQuiz(event)" class="p-6 md:p-8 space-y-6">
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-slate-800 border-b pb-2 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                        የተማሪ መረጃ መሙያ
+                    </h3>
+
+                    <div>
+                        <label for="studentName" class="block text-sm font-semibold text-slate-700 mb-1">የተማሪ ሙሉ ስም <span class="text-rose-500">*</span></label>
+                        <input type="text" id="studentName" required placeholder="ምሳሌ፡ አበበ ከበደ አሰፋ"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 outline-none transition text-slate-800 placeholder-slate-400">
+                    </div>
+
+                    <div>
+                        <label for="studentId" class="block text-sm font-semibold text-slate-700 mb-1">የተማሪ መታወቂያ ቁጥር (ID) <span class="text-rose-500">*</span></label>
+                        <input type="text" id="studentId" required placeholder="ምሳሌ፡ ST-6082"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 outline-none transition text-slate-800 placeholder-slate-400">
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2 text-xs md:text-sm text-slate-600">
+                    <p class="font-bold text-slate-700 flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        የፈተና መመሪያዎች፡
+                    </p>
+                    <ul class="list-disc list-inside space-y-1 pl-1">
+                        <li>ፈተናው በአጠቃላይ <strong>100 ጥያቄዎችን</strong> ያካተተ ነው፡፡</li>
+                        <li>ለእያንዳንዱ ጥያቄ መልስ ሲመርጡ <strong>ወዲያውኑ ትክክለኝነቱ ይነገራችኋል</strong>፤ ማብራሪያውም ይታያል፡፡</li>
+                        <li>አንዴ የተመረጠ መልስ <strong>ሊቀየር ወይም ሊቀለበስ አይችልም</strong>፡፡</li>
+                        <li>ሲጨርሱ ውጤትዎ ተስሎ ለአስተማሪዎ በኢሜይል (mesayferedegn2@gmail.com) ይላካል፡፡</li>
+                    </ul>
+                </div>
+
+                <button type="submit" class="w-full py-4 bg-sky-600 hover:bg-sky-700 text-white font-bold text-base rounded-xl shadow-lg hover:shadow-sky-500/25 transition transform active:scale-[0.99] flex items-center justify-center gap-2">
+                    <span>ፈተናውን ጀምር</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </button>
+            </form>
+        </section>
+
+
+        <!-- 2. ACTIVE QUIZ INTERFACE -->
+        <section id="quizScreen" class="hidden space-y-6">
+            
+            <!-- Progress Tracker -->
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex flex-col gap-3">
+                <div class="flex justify-between items-center text-sm font-semibold text-slate-700">
+                    <span id="questionProgressText">ጥያቄ 1 ከ 100</span>
+                    <span id="answeredCounterText" class="text-xs font-medium text-slate-500">የተመለሱ፡ 0 / 100</span>
+                </div>
+                <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                    <div id="progressBar" class="bg-sky-600 h-full w-[1%] transition-all duration-300"></div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
+                <div class="p-6 md:p-8 space-y-6">
+                    
+                    <!-- Question Header & Text -->
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-3">
+                            <span id="questionCategoryTag" class="px-3 py-1 bg-sky-50 text-sky-700 font-semibold text-xs rounded-md border border-sky-200">
+                                ክፍል 6 አካባቢ ሳይንስ
+                            </span>
+                            <span id="questionBadge" class="text-xs font-bold text-slate-400">#1</span>
+                        </div>
+                        <h2 id="questionText" class="text-lg md:text-xl font-bold text-slate-800 leading-snug">
+                            --
+                        </h2>
+                    </div>
+
+                    <!-- Answer Options -->
+                    <div id="optionsContainer" class="grid grid-cols-1 gap-3">
+                        <!-- Options generated dynamically via JS -->
+                    </div>
+
+                    <!-- Instant Explanation Box -->
+                    <div id="explanationBox" class="hidden p-4 rounded-xl bg-indigo-50 border border-indigo-200 text-indigo-950 space-y-1 animate-fade-in">
+                        <div class="flex items-center gap-2 font-bold text-indigo-800 text-sm">
+                            <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span>ትክክለኛ መልስና ማብራሪያ (Explanation)፡</span>
+                        </div>
+                        <p id="explanationText" class="text-sm text-indigo-900 leading-relaxed pl-7">
+                            --
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Footer Navigation Buttons -->
+                <div class="bg-slate-50 px-6 py-4 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
+                    <button id="prevBtn" onclick="prevQuestion()" disabled class="px-4 py-2.5 bg-white border border-slate-300 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed text-slate-700 font-bold text-sm rounded-xl transition flex items-center gap-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                        <span>ወደ ኋላ (Back)</span>
+                    </button>
+
+                    <div class="flex items-center gap-2">
+                        <button id="nextBtn" onclick="nextQuestion()" class="px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm rounded-xl shadow transition flex items-center gap-1.5">
+                            <span>ቀጣይ (Next)</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </button>
+                        
+                        <button onclick="confirmSubmit()" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-xl shadow transition flex items-center gap-1.5">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>ፈተናውን ጨርስ (Submit)</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 3. RESULTS DASHBOARD & TEACHER NOTIFICATION -->
+        <section id="resultScreen" class="hidden space-y-6 my-4">
+            
+            <!-- Result Summary Card -->
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
+                <div id="scoreBanner" class="bg-slate-900 text-white p-6 md:p-8 text-center space-y-3">
+                    <span id="gradeBadge" class="inline-block px-4 py-1.5 rounded-full text-xs font-bold bg-amber-400 text-amber-950 uppercase tracking-wider">
+                        ውጤት መግለጫ
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold" id="scoreDisplay">0 / 100</h2>
+                    <p class="text-slate-300 font-medium text-base" id="scorePercentage">0%</p>
+                    <p class="text-xs text-slate-400" id="studentSummaryDetail">ተማሪ፡ -- | ID: --</p>
+                </div>
+
+                <div class="p-6 md:p-8 space-y-6">
+                    
+                    <!-- Analytics Grid -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                        <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-100">
+                            <p class="text-xs font-semibold text-emerald-600 uppercase">ትክክለኛ (Correct)</p>
+                            <p id="correctCount" class="text-2xl font-bold text-emerald-700 mt-1">0</p>
+                        </div>
+                        <div class="p-4 bg-rose-50 rounded-xl border border-rose-100">
+                            <p class="text-xs font-semibold text-rose-600 uppercase">የተሳሳቱ (Incorrect)</p>
+                            <p id="wrongCount" class="text-2xl font-bold text-rose-700 mt-1">0</p>
+                        </div>
+                        <div class="p-4 bg-amber-50 rounded-xl border border-amber-100">
+                            <p class="text-xs font-semibold text-amber-600 uppercase">ያልተመለሱ (Skipped)</p>
+                            <p id="unansweredCount" class="text-2xl font-bold text-amber-700 mt-1">0</p>
+                        </div>
+                        <div class="p-4 bg-sky-50 rounded-xl border border-sky-100">
+                            <p class="text-xs font-semibold text-sky-600 uppercase">የፈጀው ጊዜ (Time)</p>
+                            <p id="totalTimeSpent" class="text-2xl font-bold text-sky-700 mt-1">00:00</p>
+                        </div>
+                    </div>
+
+                    <!-- Email & Teacher Actions Box -->
+                    <div class="p-5 bg-gradient-to-r from-sky-50 to-indigo-50 rounded-2xl border border-sky-200 space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="bg-sky-600 text-white p-2.5 rounded-xl shadow-md">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 002-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-800 text-base">ለአስተማሪ ውጤት መላኪያ (Teacher Notification)</h3>
+                                <p class="text-xs md:text-sm text-slate-600">ውጤትዎን በቀጥታ ለአስተማሪው መላክ ይችላሉ። የትምህርት መምህር ኢሜይል፡ <span class="font-bold text-sky-700">mesayferedegn2@gmail.com</span></p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="sendEmailToTeacher()" class="flex-1 min-w-[200px] py-3 px-4 bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm rounded-xl shadow transition flex items-center justify-center gap-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                                <span>ውጤትን በኢሜይል ላክ (Send Score via Email)</span>
+                            </button>
+
+                            <button onclick="copyResultsToClipboard()" class="py-3 px-4 bg-white border border-slate-300 hover:bg-slate-100 text-slate-700 font-bold text-sm rounded-xl transition flex items-center justify-center gap-2">
+                                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                                <span>ውጤቱን ቅዳ (Copy Summary)</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Retake Quiz Button -->
+                    <div class="text-center pt-2">
+                        <button onclick="restartQuiz()" class="px-6 py-3 bg-slate-800 hover:bg-slate-900 text-white font-bold text-sm rounded-xl transition">
+                            በድጋሚ ፈተናውን ጀምር (Restart Quiz)
+                        </button>
+                    </div>
+
+                    <!-- Detailed Question Review List -->
+                    <div class="border-t pt-6 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-bold text-lg text-slate-800">የ100 ጥያቄዎች ዝርዝር ግምገማ (Detailed Review)</h3>
+                            <div class="flex gap-2">
+                                <button onclick="filterReview('all')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-200 font-semibold text-slate-700 hover:bg-slate-300">ሁሉንም</button>
+                                <button onclick="filterReview('wrong')" class="text-xs px-3 py-1.5 rounded-lg bg-rose-100 font-semibold text-rose-700 hover:bg-rose-200">የተሳሳቱ</button>
+                            </div>
+                        </div>
+
+                        <div id="reviewContainer" class="space-y-4 max-h-[600px] overflow-y-auto pr-2">
+                            <!-- Review cards loaded dynamically -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Jump to Question Modal / Grid Drawer -->
+    <div id="gridModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[85vh] flex flex-col overflow-hidden">
+            <div class="p-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+                <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">
+                    <svg class="w-5 h-5 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                    የጥያቄዎች ማውጫ ( Jump to Question 1-100 )
+                </h3>
+                <button onclick="toggleGridModal()" class="p-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <!-- Legend -->
+            <div class="px-4 py-2.5 bg-slate-100 border-b border-slate-200 flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-600">
+                <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-emerald-500 inline-block"></span> ትክክለኛ</div>
+                <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-rose-500 inline-block"></span> የተሳሳተ</div>
+                <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-sky-500 inline-block"></span> አሁን ያለህበት</div>
+                <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-slate-200 inline-block"></span> ያልተመለሰ</div>
+            </div>
+
+            <!-- Grid Items -->
+            <div id="questionGrid" class="p-4 overflow-y-auto grid grid-cols-5 sm:grid-cols-8 md:grid-cols-10 gap-2 flex-1">
+                <!-- Grid buttons dynamically rendered -->
+            </div>
+
+            <div class="p-4 border-t border-slate-200 bg-slate-50 flex justify-end">
+                <button onclick="toggleGridModal()" class="px-4 py-2 bg-slate-800 text-white rounded-xl text-sm font-semibold hover:bg-slate-900">
+                    ዝጋ (Close)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="fixed bottom-5 right-5 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl transform translate-y-20 opacity-0 transition-all duration-300 z-50 text-sm font-medium flex items-center gap-2">
+        <span id="toastMessage">--</span>
+    </div>
+
+    <script>
+        /* All 100 Questions Data Extracted & Structured directly from Document */
+        const quizData = [
+            {
+                id: 1,
+                question: "የደም ፈሳሽ ክፍል የሆነውና ውሃን እንዲሁም አልሚ ምግቦችን የሚይዘው የትኛው ነው?",
+                options: ["ሀ) ፕላዝማ", "ለ) ቀይ የደም ህዋስ", "ሐ) ነጭ የደም ህዋስ", "መ) ፕሌትሌትስ"],
+                correct: 0,
+                explanation: "ፕላዝማ የደም ፈሳሽ ክፍል ሲሆን በውስጡ ውሃ፣ አልሚ ምግቦች፣ ሆርሞኖች እና የቆሻሻ ቁሳቁሶችን አሟምቶ ያጓጉዛል፡፡"
+            },
+            {
+                id: 2,
+                question: "ኦክስጂንን ከሳንባ ተቀብለው ወደ መላ የሰውነት ህዋሶች የሚያጓጉዙት የትኞቹ የደም ህዋሶች ናቸው?",
+                options: ["ሀ) ፕሌትሌቶች", "ለ) ቀይ የደም ህዋሶች", "ሐ) ነጭ የደም ህዋሶች", "መ) የደም ፕላዝማ"],
+                correct: 1,
+                explanation: "ቀይ የደም ህዋሶች (Red Blood Cells) በውስጣቸው ሄሞግሎቢን የተባለ አቅፊ ፕሮቲን በመያዝ ኦክስጂንን ወደ ሁሉም የሰውነት ክፍሎች ያጓጉዛሉ፡፡"
+            },
+            {
+                id: 3,
+                question: "በሰውነታችን ውስጥ ቀይ የደም ህዋሶች ኦክስጂንን ለመሸከም የሚያስችላቸው ሃመልሚል (pigment) ምን ይባላል?",
+                options: ["ሀ) ፕላዝማ", "ለ) ኢንዛይም", "ሐ) ሄሞግሎቢን", "መ) ሆርሞን"],
+                correct: 2,
+                explanation: "ሄሞግሎቢን (Hemoglobin) ብረት የያዘ ፕሮቲን ሲሆን ኦክስጂንን በቀላሉ በመያዝ ቀይ የደም ህዋሶች ኦክስጂን እንዲያጓጉዙ ያደርጋል፡፡"
+            },
+            {
+                id: 4,
+                question: "ቀይ የደም ህዋሶች የት ቦታ ላይ ይመረታሉ?",
+                options: ["ሀ) ልብ ውስጥ", "ለ) ሳንባ ውስጥ", "ሐ) ደም ስር ውስጥ", "መ) መቅኔ ውስጥ"],
+                correct: 3,
+                explanation: "ቀይ የደም ህዋሶች በአጥንት መቅኔ (Bone Marrow) ውስጥ አዘውትረው ይመረታሉ፡፡"
+            },
+            {
+                id: 5,
+                question: "የቀይ የደም ህዋሶች አማካይ የሕይወት ዕድሜ ስንት ቀናት ነው?",
+                options: ["ሀ) ከ10 - 15 ቀን", "ለ) ከ20 - 30 ቀን", "ሐ) ከ200 - 300 ቀን", "መ) ከ100 - 120 ቀን"],
+                correct: 3,
+                explanation: "ቀይ የደም ህዋሶች ለአማካይ ከ100 እስከ 120 ቀናት በህይወት ከቆዩ በኋላ ያረጃሉ እንዲሁም በአዲስ ይተካሉ፡፡"
+            },
+            {
+                id: 6,
+                question: "ወደ ሰውነታችን የሚገቡ በሽታ አምጪ ተህዋሲያንን (ጀርሞችን) በመከላከል የሰውነታችንን ጤንነት የሚጠብቁት የትኞቹ ናቸው?",
+                options: ["ሀ) ፕሌትሌቶች", "ለ) ነጭ የደም ህዋሶች", "ሐ) ቀይ የደም ህዋሶች", "መ) ፕላዝማ"],
+                correct: 1,
+                explanation: "ነጭ የደም ህዋሶች (White Blood Cells) በሽታ አምጪ ጀርሞችንና ተህዋሲያንን በመዋጋት የሰውነት የበሽታ መከላከል አቅምን ይገነባሉ፡፡"
+            },
+            {
+                id: 7,
+                question: "ሰውነታችን በሚቆስልበት ወይም በሚደማበት ጊዜ ደም እንዲረጋ የሚያደርጉት የደም ህዋሶች የትኞቹ ናቸው?",
+                options: ["ሀ) ቀይ የደም ህዋሶች", "ለ) ነጭ የደም ህዋሶች", "ሐ) ፕሌትሌቶች", "መ) ሄሞግሎቢን"],
+                correct: 2,
+                explanation: "ፕሌትሌቶች (Platelets) ቁስለት በሚከሰትበት ጊዜ ደም በፍጥነት እንዲረጋና ከመጠን በላይ ደም እንዳይፈስ ያደርጋሉ፡፡"
+            },
+            {
+                id: 8,
+                question: "ደምን ከልብ ወደ ተለያዩ የሰውነት ክፍሎች የሚያሰራጨውና ወፍራም ግድግዳ ያለው የደም ሥር የትኛው ነው?",
+                options: ["ሀ) ደም መልስ (Vein)", "ለ) ቀጫጭን የደም ሥር (Capillary)", "ሐ) ፑልሞናሪ ቨይን", "መ) ደም ቅዳ (Artery)"],
+                correct: 3,
+                explanation: "ደም ቅዳ (Artery) ከፍተኛ ግፊት ያለውን ደም ከልብ ወደ ሌሎች አካላት ስለሚወስድ ወፍራም እና የመጠጣጠር አቅም ያለው ግድግዳ አለው፡፡"
+            },
+            {
+                id: 9,
+                question: "ደምን ከተለያዩ የሰውነት ክፍሎች ወደ ልብ የሚመልሰው የደም ሥር ምን ይባላል?",
+                options: ["ሀ) ደም መልስ (Vein)", "ለ) ደም ቅዳ (Artery)", "ሐ) አኦርታ", "መ) ካፒላሪ"],
+                correct: 0,
+                explanation: "ደም መልስ (Vein) ደምን ከተለያዩ የሰውነት ክፍሎች ወደ ልብ የሚመልስ የደም ሥር ነው፡፡"
+            },
+            {
+                id: 10,
+                question: "ደም ቅዳንና ደም መልስን የሚያገናኙትና ለሰውነት ህዋሶች በጣም ቅርብ የሆኑት የደም ሥሮች የትኞቹ ናቸው?",
+                options: ["ሀ) ትልቁ ደም ቅዳ", "ለ) ቀጫጭን የደም ሥሮች (Capillaries)", "ሐ) ፑልሞናሪ አርተሪ", "መ) ትልቁ ደም መልስ"],
+                correct: 1,
+                explanation: "ቀጫጭን የደም ሥሮች (Capillaries) በደም ቅዳ እና በደም መልስ መካከል የሚገኙና ከአካላችን ህዋሶች ጋር ቀጥታ የቁስ ልውውጥ የሚያደርጉ ናቸው፡፡"
+            },
+            {
+                id: 11,
+                question: "የሰው ልብ ስንት ዋና ዋና ክፍሎች (ልበ ገንዳዎች) አሉት?",
+                options: ["ሀ) 2", "ለ) 3", "ሐ) 4", "መ) 5"],
+                correct: 2,
+                explanation: "የሰው ልብ 4 ዋና ዋና ልበ ገንዳዎች አሉት፡ ቀኝ ተቀባይ፣ ቀኝ አቀባይ፣ ግራ ተቀባይ እና ግራ አቀባይ ልበ ገንዳዎች፡፡"
+            },
+            {
+                id: 12,
+                question: "የልብ ትርታን ለማዳመጥ የምንጠቀምበት የሕክምና መሣሪያ ምን ይባላል?",
+                options: ["ሀ) ቴርሞሜትር", "ለ) ማይክሮስኮፕ", "ሐ) ባሮሜትር", "መ) ስቴቶስኮፕ"],
+                correct: 3,
+                explanation: "ስቴቶስኮፕ (Stethoscope) የልብን ትርታና የሳንባ ድምፅ ለማዳመጥ የሚያገለግል የሕክምና መሣሪያ ነው፡፡"
+            },
+            {
+                id: 13,
+                question: "በኦክስጂን ያልበለፀገ ደምን ከትልቁ ደም መልስ ተቀብሎ ወደ ቀኝ አቀባይ ልበ ገንዳ የሚልከው የልብ ክፍል የትኛው ነው?",
+                options: ["ሀ) ቀኝ ተቀባይ ልበ ገንዳ", "ለ) ግራ ተቀባይ ልበ ገንዳ", "ሐ) ግራ አቀባይ ልበ ገንዳ", "መ) ቀኝ አቀባይ ልበ ገንዳ"],
+                correct: 0,
+                explanation: "ቀኝ ተቀባይ ልበ ገንዳ (Right Atrium) ከሰውነት የሚመለሰውን ኦክስጂን የሌለው ደም በመቀበል ወደ ቀኝ አቀባይ ይልካል፡፡"
+            },
+            {
+                id: 14,
+                question: "ከቀኝ ተቀባይ ልበ ገንዳ የተቀበለውን ደም በፑልሞናሪ አርተሪ ወደ ሳንባ የሚረጨው የልብ ክፍል የትኛው ነው?",
+                options: ["ሀ) ግራ ተቀባይ ልበ ገንዳ", "ለ) ቀኝ አቀባይ ልበ ገንዳ", "ሐ) ግራ አቀባይ ልበ ገንዳ", "መ) ቀኝ ተቀባይ ልበ ገንዳ"],
+                correct: 1,
+                explanation: "ቀኝ አቀባይ ልበ ገንዳ (Right Ventricle) ደምን ወደ ሳንባ በመርጨት ኦክስጂን እንዲያገኝ ያደርጋል፡፡"
+            },
+            {
+                id: 15,
+                question: "ከሳንባ በኦክስጂን የበለፀገ ደምን በፑልሞናሪ ቨይን ተቀብሎ ወደ ግራ አቀባይ ልበ ገንዳ የሚልከው ክፍል የትኛው ነው?",
+                options: ["ሀ) ቀኝ ተቀባይ ልበ ገንዳ", "ለ) ቀኝ አቀባይ ልበ ገንዳ", "ሐ) ግራ ተቀባይ ልበ ገንዳ", "መ) ግራ አቀባይ ልበ ገንዳ"],
+                correct: 2,
+                explanation: "ግራ ተቀባይ ልበ ገንዳ (Left Atrium) ከሳንባ የታደሰውንና በኦክስጂን የበለፀገውን ደም ይቀበላል፡፡"
+            },
+            {
+                id: 16,
+                question: "በኦክስጂን የበለፀገውን ደም በአኦርታ (ትልቁ ደም ቅዳ) በኩል ወደ መላው የሰውነት ክፍሎች የሚረጨው በጣም ወፍራሙ የልብ ክፍል የትኛው ነው?",
+                options: ["ሀ) ቀኝ ተቀባይ ልበ ገንዳ", "ለ) ግራ ተቀባይ ልበ ገንዳ", "ሐ) ቀኝ አቀባይ ልበ ገንዳ", "መ) ግራ አቀባይ ልበ ገንዳ"],
+                correct: 3,
+                explanation: "ግራ አቀባይ ልበ ገንዳ (Left Ventricle) ደምን ወደ መላው ሰውነት ስለሚረጭ በጣም ወፍራም የጡንቻ ግድግዳ አለው፡፡"
+            },
+            {
+                id: 17,
+                question: "ከሚከተሉት ውስጥ የደም ዋና ጥቅም የሆነው የትኛው ነው?",
+                options: ["ሀ) አየርን፣ አልሚ ምግቦችንና ቆሻሻዎችን ማጓጓዝ", "ለ) የሰውነትን ቅርጽ ብቻ መደገፍ", "ሐ) ድምፅን ማጎርነን", "መ) የምግብ ፍጨትን ማከናወን"],
+                correct: 0,
+                explanation: "የደም ዋና ተግባር ኦክስጂንን፣ አልሚ ምግቦችን፣ ሆርሞኖችንና ሴላዊ ቆሻሻዎችን ማጓጓዝ ነው፡፡"
+            },
+            {
+                id: 18,
+                question: "በሰውነታችን ውስጥ ሁልጊዜ ያለማቋረጥ ሥራ ላይ የሚገኘው የጡንቻ አካል የትኛው ነው?",
+                options: ["ሀ) እግር", "ለ) ልብ", "ሐ) እጅ", "መ) መንጋጋ"],
+                correct: 1,
+                explanation: "ልብ ከፅንስ ጀምሮ እስከ ህይወት ፍጻሜ ድረስ ሳያቋርጥ የሚመታና ደም የሚረጭ ልዩ የጡንቻ አካል ነው፡፡"
+            },
+            {
+                id: 19,
+                question: "በኦክስጂን የበለፀገ ደም ከሳንባ ወደ ልብ የሚመለሰው በየትኛው የደም ሥር አማካኝነት ነው?",
+                options: ["ሀ) ትልቁ ደም መልስ", "ለ) ፑልሞናሪ አርተሪ", "ሐ) ፑልሞናሪ ቨይን", "መ) ካፒላሪ"],
+                correct: 2,
+                explanation: "ፑልሞናሪ ቨይን (Pulmonary Vein) ብቸኛው በኦክስጂን የበለፀገ ደም የሚያጓጉዝ የደም መልስ ስር ነው፡፡"
+            },
+            {
+                id: 20,
+                question: "ደም በሰውነታችን ውስጥ የሚጓዝበት ዝግ የቧንቧዎች ሥርዓት ምን ይባላል?",
+                options: ["ሀ) የትንፈሳ ሥርዓት", "ለ) የነርቭ ሥርዓት", "ሐ) የምግብ ፍጨት ሥርዓት", "መ) የደም ዑደት ሥርዓት"],
+                correct: 3,
+                explanation: "የደም ዑደት ሥርዓት (Circulatory System) ደም፣ ልብና የደም ሥሮችን ያካተተ ዝግ የዝውውር መስመር ነው፡፡"
+            },
+            {
+                id: 21,
+                question: "በወንዶችና በሴቶች ላይ በተወሰነ የዕድሜ ክልል ውስጥ የሚከሰቱ አካላዊና የባህሪ ለውጦች ምን ይባላሉ?",
+                options: ["ሀ) ስነ-ሕይወታዊ (ተፈጥሯዊ) ለውጦች", "ለ) በሽታዎች", "ሐ) የደም ዑደት", "መ) ድብልቆች"],
+                correct: 0,
+                explanation: "በጉርምስና ወቅት የሚመጡ አካላዊና የስነ-ልቦና ለውጦች የተፈጥሮ ስነ-ሕይወታዊ ለውጦች ይባላሉ፡፡"
+            },
+            {
+                id: 22,
+                question: "በወንዶች ላይ ጉርምስና መታየት የሚጀምረው በአማካይ በስንት ዓመት ዕድሜ ክልል ነው?",
+                options: ["ሀ) ከ5-8 ዓመት", "ለ) ከ12-14 ዓመት", "ሐ) ከ20-25 ዓመት", "መ) ከ30-35 ዓመት"],
+                correct: 1,
+                explanation: "ወንዶች በአማካይ ከ12-14 ዓመት ዕድሜ ክልል ውስጥ የጉርምስና አካላዊ ለውጦችን ማሳየት ይጀምራሉ፡፡"
+            },
+            {
+                id: 23,
+                question: "በኮረዳነት ወቅት በሴቶች ላይ ብቻ የሚታይ ስነ-ሕይወታዊ ለውጥ የትኛው ነው?",
+                options: ["ሀ) የድምፅ መጎርነን", "ለ) የትከሻ መስፋት", "ሐ) የወር አበባ መታየት", "መ) የጡንቻዎች ማደግ"],
+                correct: 2,
+                explanation: "የወር አበባ መታየት (Menstruation) በኮረዳነት ወቅት በሴቶች ላይ ብቻ የሚከሰት ተፈጥሯዊ ዑደት ነው፡፡"
+            },
+            {
+                id: 24,
+                question: "በጉርምስና ወቅት በወንዶች ላይ ብቻ የሚታይ አካላዊ ለውጥ የትኛው ነው?",
+                options: ["ሀ) የዳሌ መስፋት", "ለ) የጡት ማጎጥጎጥ", "ሐ) የወር አበባ ማየት", "መ) የድምፅ መጎርነንና የደረት መስፋት"],
+                correct: 3,
+                explanation: "የድምፅ መጎርነንና የደረት መስፋት በጉርምስና ወቅት በወንዶች ላይ የሚታይ አካላዊ ለውጥ ነው፡፡"
+            },
+            {
+                id: 25,
+                question: "በሁለቱም ጾታዎች (በወንዶችና በሴቶች) በጉርምስና/ኮረዳነት ወቅት የሚታይ የጋራ ለውጥ የትኛው ነው?",
+                options: ["ሀ) በብብት ስርና በብልት አካባቢ ፀጉር ማብቀል", "ለ) የወር አበባ ማየት", "ሐ) የድምፅ መጎርነን", "መ) የዳሌ መስፋት"],
+                correct: 0,
+                explanation: "በብብት ስርና በብልት አካባቢ የፀጉር ማበቅ በወንዶችም በሴቶችም ላይ የሚታይ የጋራ ለውጥ ነው፡፡"
+            },
+            {
+                id: 26,
+                question: "የወር አበባ በአማካይ በስንት ቀናት ልዩነት በማህፀንና በእንቁልጢ ውስጥ የሚካሄድ ተፈጥሯዊ ዑደት ነው?",
+                options: ["ሀ) በየ10 ቀናት", "ለ) በየ28 ቀናት", "ሐ) በየ60 ቀናት", "መ) በየ90 ቀናት"],
+                correct: 1,
+                explanation: "የወር አበባ በአማካይ በየ28 ቀናት የሚደጋገም ተፈጥሯዊ ስነ-ሕይወታዊ ዑደት ነው፡፡"
+            },
+            {
+                id: 27,
+                question: "እንቁላል ከእንቁልጢ ተፈብርኮ መውጣት እና ወደ ማህፀን ቦይ መግባት ሂደት ምን ይባላል?",
+                options: ["ሀ) ትንፈሳ", "ለ) ንጥረት", "ሐ) ውፃት (Ovulation)", "መ) እፍግታ"],
+                correct: 2,
+                explanation: "ውፃት (Ovulation) የበሰለ እንቁላል ከእንቁልጢ ተለቆ ወደ ማህፀን ቦይ የሚጓዝበት ሂደት ነው፡፡"
+            },
+            {
+                id: 28,
+                question: "ሴቶች በወር አበባ ጊዜ ንጽህናቸውን ለመጠበቅ መጠቀም ያለባቸው ቁሳቁስ የትኛው ነው?",
+                options: ["ሀ) የቆሸሸ ጨርቅ", "ለ) ጋዜጣ", "ሐ) ቅጠል", "መ) ንፁህ ጨርቅ ወይም ሞዴስ"],
+                correct: 3,
+                explanation: "የወር አበባ ጊዜ ንጽህናን ለመጠበቅና ከበሽታ ለመከላከል ንጹህ ጨርቅ ወይም ሞዴስ መጠቀም ያስፈልጋል፡፡"
+            },
+            {
+                id: 29,
+                question: "የወር አበባ ዑደት በሴቶች ላይ የሚታይበት የዕድሜ ክልል በአብዛኛው ከስንት እስከ ስንት ዓመት ነው?",
+                options: ["ሀ) ከ12 እስከ 55 ዓመት", "ለ) ከ1 እስከ 10 ዓመት", "ሐ) ከ60 እስከ 80 ዓመት", "መ) ከ70 እስከ 90 ዓመት"],
+                correct: 0,
+                explanation: "የወር አበባ ዑደት በሴቶች ከኮረዳነት (12 ዓመት አካባቢ) ጀምሮ እስከ ማረጥ (50-55 ዓመት) ይዘልቃል፡፡"
+            },
+            {
+                id: 30,
+                question: "በስነ-ልቦናዊና አካላዊ ጥቃት ሰለባ ላለመሆን እንዲሁም ጾታዊ ጥቃትን ለመከላከል ማድረግ ያለብን የትኛውን ነው?",
+                options: ["ሀ) ለባለስልጣናት ወይም ለቤተሰብ አለማወቅ", "ለ) ተጠራጣሪ ቦታዎችንና ሁኔታዎችን ማስወገድና ለታመኑ ሰዎች ጥቆማ መስጠት", "ሐ) ከማንኛውም ሰው ጋር ብቻውን መቆየት", "መ) ጥቃትን ደብቆ መያዝ"],
+                correct: 1,
+                explanation: "ጾታዊ ጥቃትን ለመከላከል አስጊ ሁኔታዎችን ማስወገድና ወዲያውኑ ለቤተሰብ ወይም ለሚመለከታቸው አካላት ጥቆማ መስጠት ያስፈልጋል፡፡"
+            },
+            {
+                id: 31,
+                question: "በኮረዳነት ወቅት በሴቶች ላይ ድምፅ ምን ይሆናል?",
+                options: ["ሀ) ይጎረንናል", "ለ) አይቀየርም", "ሐ) ይቀጥናል", "መ) ሙሉ በሙሉ ይጠፋል"],
+                correct: 2,
+                explanation: "በሴቶች ላይ በኮረዳነት ወቅት በሆርሞን ለውጥ ምክንያት ድምፅ እየቀጠነና እየለሰለሰ ይሄዳል፡፡"
+            },
+            {
+                id: 32,
+                question: "የወንድ ዘር ፈሳሽ (sperm) መመንጨት የሚጀምረው በየትኛው የእድገት ደረጃ ነው?",
+                options: ["ሀ) በህፃንነት", "ለ) በአረጋዊነት", "ሐ) በሽማግሌነት", "መ) በጉርምስና"],
+                correct: 3,
+                explanation: "የወንድ ዘር ፈሳሽ መፈበርና መመንጨት የሚጀምረው በጉርምስና የእድገት ደረጃ ወቅት ነው፡፡"
+            },
+            {
+                id: 33,
+                question: "ሰዎችን ለግል ፍላጎትና ጥቅም ብሎ ጾታን መሠረት በማድረግ የሚፈጸም ትንኮሳና አስገድዶ መድፈር ምን ይባላል?",
+                options: ["ሀ) ጾታዊ ጥቃት", "ለ) የቡድን ውይይት", "ሐ) አካላዊ እደገት", "መ) ስነ-ሕይወታዊ ዑደት"],
+                correct: 0,
+                explanation: "ጾታን መሰረት በማድረግ የሚፈፀሙ አካላዊና ስነ-ልቦናዊ ትንኮሳዎች ጾታዊ ጥቃት (Sexual Violence) ይባላሉ፡፡"
+            },
+            {
+                id: 34,
+                question: "በወር አበባ ጊዜ ፅንስ ካልተከናወነ የማህፀን ግድግዳ ምን ይሆናል?",
+                options: ["ሀ) ይወፍራል", "ለ) ይፈራረሳል በደም መልክም ይወጣል", "ሐ) ድንጋይ ይሆናል", "መ) ወደ ሳንባ ይሄዳል"],
+                correct: 1,
+                explanation: "ፅንስ ካልተከናወነ ለአዲሱ ፅንስ ተዘጋጅቶ የነበረው የማህፀን ግድግዳ ፈራርሶ በደም መልክ ይወጣል፡፡"
+            },
+            {
+                id: 35,
+                question: "ልጃገረዶች በኮረዳነት ወቅት የሚታዩባቸው ለውጦች መታየት የሚጀምሩት በአማካይ በስንት ዓመታቸው ነው?",
+                options: ["ሀ) ከ2-4 ዓመት", "ለ) ከ20-25 ዓመት", "ሐ) ከ11-13 ዓመት", "መ) ከ40-50 ዓመት"],
+                correct: 2,
+                explanation: "ልጃገረዶች በአማካይ ከ11 እስከ 13 ዓመት ባለው ዕድሜ የኮረዳነት ለውጦች መታየት ይጀምሩባቸዋል፡፡"
+            },
+            {
+                id: 36,
+                question: "ኦክስጂንን ወደ ሰውነታችን የማስገባትና ካርቦን ዳይኦክሳይድን ወደ ውጭ የማስወጣት ሂደት ምን ይባላል?",
+                options: ["ሀ) የደም ዑደት", "ለ) የምግብ ፍጨት", "ሐ) ጉርምስና", "መ) ትንፈሳ"],
+                correct: 3,
+                explanation: "የጋዞች ልውውጥን ማለትም ኦክስጂንን ማስገባትና ካርቦን ዳይኦክሳይድን ማስወጣት ሂደት ትንፈሳ (Respiration) ይባላል፡፡"
+            },
+            {
+                id: 37,
+                question: "ከአየር ጋር ተቀላቅለው የሚገቡ ጀርሞችንና ቆሻሻዎችን አጣርቶ የሚያስቀረውና አየር የሚያሞቀው የትኛው ነው?",
+                options: ["ሀ) ሰርን (Nostril/Nasal Cavity)", "ለ) ድህረ-አፍ", "ሐ) ዐብይ ትንቧ", "መ) ድልሺ"],
+                correct: 0,
+                explanation: "ሰርን (Nasal Cavity) በውስጡ ባሉ ፀጉሮችና ንፍጥ አየርን ያጣራል፣ ያሞቃል እንዲሁም እርጥበት ይሰጠዋል፡፡"
+            },
+            {
+                id: 38,
+                question: "ምግብና አየር በጋራ የሚተላለፉበት የሥርዓተ ትንፈሳ ክፍል የትኛው ነው?",
+                options: ["ሀ) ባላ ትንቧ", "ለ) ድህረ-አፍ (Pharynx)", "ሐ) ደቂቅ ትንቧ", "መ) ትንከረት"],
+                correct: 1,
+                explanation: "ድህረ-አፍ (Pharynx) ለአየር እና ለምግብ የጋራ መተላለፊያ መስመር ሆኖ ያገለግላል፡፡"
+            },
+            {
+                id: 39,
+                question: "በሰውነታችን ውስጥ የድምፅ ሳጥን (Larynx) የሚገኘው ከየትኛው ክፍል በላይ ነው?",
+                options: ["ሀ) ከሳንባ", "ለ) ከድልሺ", "ሐ) ከዐብይ ትንቧ (Trachea)", "መ) ከአፍንጫ"],
+                correct: 2,
+                explanation: "የድምፅ ሳጥን (Larynx) ከዐብይ ትንቧ (Trachea) በላይ ይገኛል፡፡"
+            },
+            {
+                id: 40,
+                question: "ወደ ባላ ትንቧ ለሚገባውና ለሚወጣው አየር ዋና መተላለፊያ ቧንቧ የሆነው የትኛው ነው?",
+                options: ["ሀ) ደቂቅ ትንቧ", "ለ) ትንከረት", "ሐ) ሰርን", "መ) ዐብይ ትንቧ (Trachea)"],
+                correct: 3,
+                explanation: "ዐብይ ትንቧ (Trachea) አየርን ከድህረ-አፍ ወደ ሳንባ ባላ ትንቧዎች የሚያጓጉዝ ዋና ቧንቧ ነው፡፡"
+            },
+            {
+                id: 41,
+                question: "ዐብይ ትንቧ ተከፍሎ ወደ ሁለቱ ሳንባዎች የሚገቡት የቧንቧ ቅርንጫፎች ምን ይባላሉ?",
+                options: ["ሀ) ባላ ትንቧ (Bronchi)", "ለ) ድህረ-አፍ", "ሐ) አየር ከረጢት", "መ) ድልሺ"],
+                correct: 0,
+                explanation: "ዐብይ ትንቧ ወደ ግራና ቀኝ ሳንባዎች ሲከፈል ባላ ትንቧዎች (Bronchi) ይባላሉ፡፡"
+            },
+            {
+                id: 42,
+                question: "በሳንባ ውስጥ የሚገኙ በጣም ጥቃቅን የባላ ትንቧ ቅርንጫፎች ምን ተብለው ይጠራሉ?",
+                options: ["ሀ) ዐብይ ትንቧ", "ለ) ደቂቅ ትንቧ (Bronchioles)", "ሐ) ሰርን", "መ) አኦርታ"],
+                correct: 1,
+                explanation: "ባላ ትንቧዎች በሳንባ ውስጥ እየተከፋፈሉ ጥቃቅን ሲሆኑ ደቂቅ ትንቧዎች (Bronchioles) ይባላሉ፡፡"
+            },
+            {
+                id: 43,
+                question: "በሳንባ ውስጥ የኦክስጂንና የካርቦን ዳይኦክሳይድ ጋዝ ልውውጥ የሚካሄድበት ቦታ የትኛው ነው?",
+                options: ["ሀ) ድህረ-አፍ", "ለ) ዐብይ ትንቧ", "ሐ) ትንከረት / የአየር ከረጢት (Alveoli)", "መ) ድልሺ"],
+                correct: 2,
+                explanation: "አየር ከረጢት ወይም ትንከረት (Alveoli) ቀጫጭን ደም ስሮች የተከበበና የጋዝ ልውውጥ የሚካሄድበት ቦታ ነው፡፡"
+            },
+            {
+                id: 44,
+                question: "አየርን ወደ ሰውነታችን ውስጥ የማስገባት ሂደት ምን ይባላል?",
+                options: ["ሀ) ኢምጋት", "ለ) ንጥረት", "ሐ) ትነት", "መ) ምጋት (Inspiration)"],
+                correct: 3,
+                explanation: "አየርን ወደ ሳንባ ማስገባት ምጋት (Inspiration/Inhalation) ይባላል፡፡"
+            },
+            {
+                id: 45,
+                question: "አየርን ከሰውነታችን ወደ ውጭ የማስወጣት ሂደት ምን ይባላል?",
+                options: ["ሀ) ኢምጋት (Expiration)", "ለ) ምጋት", "ሐ) ጥሊያ", "መ) ቀረራ"],
+                correct: 0,
+                explanation: "አየርን ከሳንባ ወደ ውጭ ማስወጣት ኢምጋት (Expiration/Exhalation) ይባላል፡፡"
+            },
+            {
+                id: 46,
+                question: "በምጋት (አየር ወደ ውስጥ በሚገባበት) ጊዜ የድልሺ (Diaphragm) እንቅስቃሴ እንዴት ነው?",
+                options: ["ሀ) ወደ ላይ ይወጣል", "ለ) ይረግባል (ወደ ታች ይወርዳል)", "ሐ) የደጋን ቅርጽ ይይዛል", "መ) አይንቀሳቀስም"],
+                correct: 1,
+                explanation: "በምጋት ወቅት ድልሺ ወደ ታች ይረግባል/ይወርዳል፤ የደረት ወና ስፋት እንዲጨምር ያደርጋል፡፡"
+            },
+            {
+                id: 47,
+                question: "በኢምጋት (አየር ወደ ውጭ በሚወጣበት) ጊዜ የድልሺ ቅርፅ ምን ይመስላል?",
+                options: ["ሀ) ወደ ታች የተዘረጋ", "ለ) ጠፍጣፋ", "ሐ) የደጋን (ግማሽ ክበብ) ቅርፅ ይይዛል", "መ) የታጠፈ"],
+                correct: 2,
+                explanation: "በኢምጋት ወቅት ድልሺ ወደ ላይ በመመለስ የደጋን (ግማሽ ክበብ) ቅርፅ ይይዛል፡፡"
+            },
+            {
+                id: 48,
+                question: "ወደ ውስጥ በምናስገባው (ምጋት) አየር ውስጥ የኦክስጂን መጠን በመቶኛ ስንት ነው?",
+                options: ["ሀ) 78%", "ለ) 16%", "ሐ) 4%", "መ) 21%"],
+                correct: 3,
+                explanation: "ወደ ውስጥ በምናስገባው ንጹህ አየር ውስጥ ኦክስጂን 21% ያህል ይይዛል፡፡"
+            },
+            {
+                id: 49,
+                question: "ወደ ውጭ በምንተነፍሰው (ኢምጋት) አየር ውስጥ የካርቦን ዳይኦክሳይድ መጠን ስንት በመቶ ይደርሳል?",
+                options: ["ሀ) 4%", "ለ) 0.03%", "ሐ) 21%", "መ) 78%"],
+                correct: 0,
+                explanation: "በኢምጋት አየር ውስጥ በሴሎች ተወግዶ የሚወጣው ካርቦን ዳይኦክሳይድ መጠን ወደ 4% ያድጋል፡፡"
+            },
+            {
+                id: 50,
+                question: "በምጋትና በኢምጋት ጊዜ የመጠናቸው ለውጥ የማያሳየው ጋዝ የትኛው ነው?",
+                options: ["ሀ) ኦክስጂን", "ለ) ናይትሮጂን (78%)", "ሐ) ካርቦን ዳይኦክሳይድ", "መ) የውሃ ትነት"],
+                correct: 1,
+                explanation: "ናይትሮጂን (78%) በትንፈሳ ወቅት በሰውነታችን ስለማይወሰድ መጠኑ ሳይቀየር ይመለሳል፡፡"
+            },
+            {
+                id: 51,
+                question: "በአፍ ከመተንፈስ ይልቅ በአፍንጫ መተንፈስ የሚመረጥበት ዋና ምክንያት څه ነው?",
+                options: ["ሀ) አፉ ስለሚዘጋ", "ለ) አፍንጫ ትልቅ ስለሆነ", "ሐ) በሰርን ውስጥ ያሉ ፀጉሮች አየር ስለሚያጣሩና ስለሚያሞቁ", "መ) በአፍንጫ በፍጥነት ስለሚተነፈስ"],
+                correct: 2,
+                explanation: "ሰርን አየርን ከፀጉርና ንፍጥ ጋር አጣርቶና አሞቆ ወደ ሳንባ ስለሚልክ በአፍንጫ መተንፈስ ይመረጣል፡፡"
+            },
+            {
+                id: 52,
+                question: "የሰው ልጅ በደረት ወና ውስጥ ስንት ሳንባዎች አሉት?",
+                options: ["ሀ) 1", "ለ) 3", "ሐ) 4", "መ) 2"],
+                correct: 3,
+                explanation: "የሰው ልጅ በደረት ወና ውስጥ ሁለት (ግራ እና ቀኝ) ሳንባዎች አሉት፡፡"
+            },
+            {
+                id: 53,
+                question: "ሳንባዎቻችንን በደረት ወና ውስጥ እንደ አጥር ከበው ከጉዳት የሚጠብቋቸው አካላት የትኞቹ ናቸው?",
+                options: ["ሀ) የጎድን አጥንቶችና ጡንቻዎች", "ለ) የጀርባ አጥንት ብቻ", "ሐ) ቆዳ ብቻ", "መ) ሆድ"],
+                correct: 0,
+                explanation: "የጎድን አጥንቶች እና ጡንቻዎች ሳንባንና ልብን ከግጭትና ከጉዳት ይጠብቃሉ፡፡"
+            },
+            {
+                id: 54,
+                question: "ከሚከተሉት ውስጥ የሥርዓተ ትንፈሳ ጥቅም ያልሆነው የቱ ነው?",
+                options: ["ሀ) ኦክስጂንን ለህዋሶች ማሰራጨት", "ለ) ደምን በመላ አካል መረጨት", "ሐ) ካርቦን ዳይኦክሳይድን ማስወገድ", "መ) የሰውነት ሙቀትን ተመጣጣኝ ማድረግ"],
+                correct: 1,
+                explanation: "ደምን በመላ አካል መረጨት የደም ዑደት ሥርዓት (ልብ) ተግባር እንጂ የትንፈሳ ሥርዓት ተግባር አይደለም፡፡"
+            },
+            {
+                id: 55,
+                question: "ድልሺ ወደ ታች በሚወርድበት ጊዜ በደረት ወና ውስጥ ያለው የአየር ግፊት ምን ይሆናል?",
+                options: ["ሀ) ይጨምራል", "ለ) አይቀየርም", "ሐ) ይቀንሳል (ስለዚህ አየር ወደ ውስጥ ይገባል)", "መ) ዜሮ ይሆናል"],
+                correct: 2,
+                explanation: "ድልሺ ሲወርድ የደረት ስፋት ይጨምራል፤ ግፊቱ ስለሚቀንስ የውጪ አየር ወደ ሳንባ ይገባል፡፡"
+            },
+            {
+                id: 56,
+                question: "ሁለትና ከሁለት በላይ የሆኑ ልዩ ቁሶች አካላዊ በሆነ መንገድ ሲጣመሩ የሚፈጠረው የቁስ ዓይነት ምን ይባላል?",
+                options: ["ሀ) አቶም", "ለ) ኤለመንት", "ሐ) ሞለኪውል", "መ) ድብልቅ (Mixture)"],
+                correct: 3,
+                explanation: "ቁሶች ያለ ኬሚካዊ ምላሽ በአካላዊ መንገድ ሲደባለቁ ድብልቅ (Mixture) ይፈጠራል፡፡"
+            },
+            {
+                id: 57,
+                question: "ምንዝሮቹን በአይን ወይም በአጉሊ መነጸር ለይተን ማየት የማንችልበትና ወጥ ይዘት ያለው ድብልቅ ምን ይባላል?",
+                options: ["ሀ) ዋህድ-ዘር ድብልቅ (Homogeneous)", "ለ) ልይ-ዘር ድብልቅ", "ሐ) ደለል", "መ) ቆሻሻ"],
+                correct: 0,
+                explanation: "ዋህድ-ዘር ድብልቅ (Homogeneous Mixture) ወጥ የሆነ ይዘት ያለውና ምንዝሮቹ የማይለዩበት ድብልቅ ነው፡፡"
+            },
+            {
+                id: 58,
+                question: "ምንዝሮቹን በአይን ወይም በአጉሊ መነጸር ለይተን ማየት የምንችልበትና ወጥ ይዘት የሌለው ድብልቅ የትኛው ነው?",
+                options: ["ሀ) የጨው ሙሙት", "ለ) ልይ-ዘር ድብልቅ (Heterogeneous)", "ሐ) አየር", "መ) ለስላሳ መጠጥ"],
+                correct: 1,
+                explanation: "ልይ-ዘር ድብልቅ (Heterogeneous Mixture) ምንዝሮቹ በግልፅ የሚለዩበትና ወጥ ይዘት የሌለው ነው፡፡"
+            },
+            {
+                id: 59,
+                question: "ከሚከተሉት ውስጥ የዋህድ-ዘር ድብልቅ ምሳሌ የሆነው የትኛው ነው?",
+                options: ["ሀ) የበቆሎና የስንዴ ድብልቅ", "ለ) የአሸዋና የውሃ ድብልቅ", "ሐ) የጨው ሙሙት (የጨውና ውሃ ድብልቅ)", "መ) የጠጠርና የሎሚ ድብልቅ"],
+                correct: 2,
+                explanation: "የጨው ሙሙት ጨው በውሃ ውስጥ ሙሉ በሙሉ ስለሚሟሟ የዋህድ-ዘር ድብልቅ ምሳሌ ነው፡፡"
+            },
+            {
+                id: 60,
+                question: "ደም በውስጡ ጠጣር የደም ህዋሶችንና ፈሳሽ ፕላዝማን የያዘ በመሆኑ በየትኛው የድብልቅ ዓይነት ይመደባል?",
+                options: ["ሀ) ዋህድ-ዘር ድብልቅ", "ለ) ሙሙት", "ሐ) ንጹህ ቁስ", "መ) ልይ-ዘር ድብልቅ"],
+                correct: 3,
+                explanation: "ደም በውስጡ ህዋሶችንና ፕላዝማን የያዘ በመሆኑ የልይ-ዘር ድብልቅ (Heterogeneous) ምሳሌ ነው፡፡"
+            },
+            {
+                id: 61,
+                question: "ጥቃቅን ቀዳዳዎች ባሉት እቃ ያልሟሙ ጠጣሮችን ከፈሳሽ የምንለይበት ዘዴ ምን ይባላል?",
+                options: ["ሀ) ጥሊያ (Filtration)", "ለ) ንጥረት", "ሐ) ትነት", "መ) ቀረራ"],
+                correct: 0,
+                explanation: "ጥሊያ (Filtration) የማጣሪያ ወረቀት በመጠቀም ያልሟሙ ጠጣሮችን ከፈሳሽ የሚለይበት ዘዴ ነው፡፡"
+            },
+            {
+                id: 62,
+                question: "በድብልቅ ውስጥ የሚገኝ ፈሳሽን በዝግታ በማንቆርቆር ከስር ከዘቀጠ ካልሟማ ጠጣር ወይም ሌላ ፈሳሽ የመለያ ዘዴ ምን ይባላል?",
+                options: ["ሀ) ትነት", "ለ) ቀረራ (Decantation)", "ሐ) ጥሊያ", "መ) ንጥረት"],
+                correct: 1,
+                explanation: "ቀረራ (Decantation) የዘቀጠውን ሳይረበሽ ከላይ ያለውን ፈሳሽ በዝግታ የማንቆርቆር ዘዴ ነው፡፡"
+            },
+            {
+                id: 63,
+                question: "ሁለትና ከዚያ በላይ የሆኑ ፈሳሾችን ባላቸው የነጥበ-ፍሌት (Boiling point) ልዩነት የምንለይበት ዘዴ የትኛው ነው?",
+                options: ["ሀ) ጥሊያ", "ለ) ቀረራ", "ሐ) ንጥረት (Distillation)", "መ) ትነት"],
+                correct: 2,
+                explanation: "ንጥረት (Distillation) ፈሳሾችን በነጥበ-ፍሌታቸው ልዩነት መሰረት በማፍላትና በማጠርጠር የመለያ ዘዴ ነው፡፡"
+            },
+            {
+                id: 64,
+                question: "የሟሙ ጠጣሮችን ከአሟሚው ፈሳሽ (ለምሳሌ ጨውን ከውሃ) ለመለየት የምንጠቀምበት ዘዴ የትኛው ነው?",
+                options: ["ሀ) ጥሊያ", "ለ) ቀረራ", "ሐ) ንጥረት", "መ) ትነት (Evaporation)"],
+                correct: 3,
+                explanation: "ትነት (Evaporation) ፈሳሹን በማፍላት እንዲተን በማድረግ የሟሟውን ጠጣር ማስቀረት የሚያስችል ዘዴ ነው፡፡"
+            },
+            {
+                id: 65,
+                question: "በሀገራችን ኢትዮጵያ የሀበሻ አረቄ የሚወጣው በየትኛው የድብልቅ ልየታ ዘዴ ነው?",
+                options: ["ሀ) ንጥረት (Distillation)", "ለ) ጥሊያ", "ሐ) ቀረራ", "መ) ትነት"],
+                correct: 0,
+                explanation: "የሀበሻ አረቄ በባህላዊ የንጥረት (Distillation) ዘዴ አልኮልን ከውሃ በመለየት ይዘጋጃል፡፡"
+            },
+            {
+                id: 66,
+                question: "ዘይትና ውሃን በለይቅል አንገት (Separatory funnel) ለመለየት የሚያስችለን የትኛው ባህሪያቸው ልዩነት ነው?",
+                options: ["ሀ) የከለራቸው ልዩነት", "ለ) በእፍግታ (Density) እና አለመቀላቀል ልዩነታቸው", "ሐ) በጣዕማቸው", "መ) በሽታቸው"],
+                correct: 1,
+                explanation: "ዘይትና ውሃ የማይቀላቀሉና የክብደት/እፍግታ ልዩነት ያላቸው በመሆኑ በለይቅል አንገት ይለያያሉ፡፡"
+            },
+            {
+                id: 67,
+                question: "ከሚከተሉት ድብልቆች ውስጥ በንጥረት (Distillation) ዘዴ የሚጠራው የትኛው ነው?",
+                options: ["ሀ) አሸዋና ውሃ", "ለ) ሻይና ሸካራ ቆሻሻ", "ሐ) ድፍድፍ ነዳጅ (Crude oil)", "መ) ጠጠርና በቆሎ"],
+                correct: 2,
+                explanation: "ድፍድፍ ነዳጅ (Crude oil) የተለያዩ ነዳጆችን በንጥረት (Distillation) ዘዴ በመለየት ይጠራል፡፡"
+            },
+            {
+                id: 68,
+                question: "የጠመኔ ዱቄትና የውሃ ድብልቅን ለመለየት በጣም ተስማሚ የሆነው ቤተ-ሙከራዊ ዘዴ የትኛው ነው?",
+                options: ["ሀ) ንጥረት", "ለ) ትነት", "ሐ) ቀረራ", "መ) ጥሊያ (Filtration)"],
+                correct: 3,
+                explanation: "የጠመኔ ዱቄት በውሃ ውስጥ ስለማይሟሟ በጥሊያ (Filtration) ወዲያውኑ ይለያል፡፡"
+            },
+            {
+                id: 69,
+                question: "አየር የብዙ ጋዞች (ናይትሮጂን፣ ኦክስጂን፣ ካርቦን ዳይኦክሳይድ) ድብልቅ ሲሆን የትኛው የድብልቅ ዓይነት ነው?",
+                options: ["ሀ) ዋህድ-ዘር ድብልቅ", "ለ) ልይ-ዘር ድብልቅ", "ሐ) የጠጣር ድብልቅ", "መ) ደለል"],
+                correct: 0,
+                explanation: "አየር ሁሉንም ጋዞች እኩል አዋህዶ የያዘ በመሆኑ የዋህድ-ዘር ድብልቅ (Homogeneous) ነው፡፡"
+            },
+            {
+                id: 70,
+                question: "ከሚከተሉት ውስጥ ልይ-ዘር ድብልቅ የሆነው የትኛው ነው?",
+                options: ["ሀ) ኮምጣጤ", "ለ) የወተትና የቡና ድብልቅ / አሸዋና በቆሎ", "ሐ) የስኳር ሙሙት", "መ) አየር"],
+                correct: 1,
+                explanation: "አሸዋና በቆሎ ወይም ያልተሟሙ ነገሮች ልይ-ዘር ድብልቅ (Heterogeneous) ናቸው፡፡"
+            },
+            {
+                id: 71,
+                question: "በአሸዋ፣ በጨውና በውሃ ድብልቅ ውስጥ ጨውን ብቻ ነጥሎ ለማውጣት የምንጠቀምባቸው ዘዴዎች በቅደም ተከተል የትኞቹ ናቸው?",
+                options: ["ሀ) መጀመሪያ ንጥረት ከዚያ ቀረራ", "ለ) መጀመሪያ ትነት ከዚያ ጥሊያ", "ሐ) መጀመሪያ ጥሊያ (አሸዋውን ለመለየት) ከዚያ ትነት (ጨውን ለማስቀረት)", "መ) መጀመሪያ ቀረራ ከዚያ ንጥረት"],
+                correct: 2,
+                explanation: "መጀመሪያ በጥሊያ አሸዋው ይለያል፤ በመቀጠል የጨው ሙሙቱን በማተን ጨውን ማግኘት ይቻላል፡፡"
+            },
+            {
+                id: 72,
+                question: "ድብልቆችን ወደ ምንዝሮቻቸው ለመለየት ኬሚካዊ ምላሽ አያስፈልግም፤ ምክንያቱም ምንዝሮቹ የተጣመሩት በምን መንገድ ነው?",
+                options: ["ሀ) በኬሚካዊ መንገድ", "ለ) በኤሌክትሪካዊ መንገድ", "ሐ) በኒዩክሌራዊ መንገድ", "መ) በአካላዊ (ፊዚካዊ) መንገድ"],
+                correct: 3,
+                explanation: "ድብልቆች የተፈጠሩት በአካላዊ (ፊዚካዊ) ስብሰባ በመሆኑ በአካላዊ የመለያ ዘዴዎች ይለያያሉ፡፡"
+            },
+            {
+                id: 73,
+                question: "በቤተ-ሙከራ ውስጥ ጥሊያን ለማከናወን ከምናዘጋጃቸው ቁሳቁሶች አንዱ የትኛው ነው?",
+                options: ["ሀ) የማጣሪያ ወረቀት (Filter paper)", "ለ) ባሮሜትር", "ሐ) ስቴቶስኮፕ", "መ) ሞዴስ"],
+                correct: 0,
+                explanation: "የማጣሪያ ወረቀት (Filter paper) ለጥሊያ ሂደት አስፈላጊው ዋና ቁስ ነው፡፡"
+            },
+            {
+                id: 74,
+                question: "የጨው ሙሙትን ስናተን በድስቱ ውስጥ ቀርቶ የሚገኘው ቁስ የትኛው ነው?",
+                options: ["ሀ) ውሃ", "ለ) ጨው", "ሐ) አየር", "መ) ምንም አይቀርም"],
+                correct: 1,
+                explanation: "ውሃው ተኖ ሲያልቅ በድስቱ ስር ጠጣሩ ጨው ብቻ ይቀራል፡፡"
+            },
+            {
+                id: 75,
+                question: "በንጥረት የመለያ ዘዴ ውስጥ የሚከናወኑት ሁለቱ አካላዊ ሂደቶች የትኞቹ ናቸው?",
+                options: ["ሀ) ማቃጠልና መፍጨት", "ለ) መበጥበጥና ማጥለል", "ሐ) ፍሌት (ትነት) እና ጥርጠት (Condensation)", "መ) መቅለጥና ማቅፋት"],
+                correct: 2,
+                explanation: "ንጥረት በመጀመሪያ ማፍላት (Evaporation) ከዚያም እንፋሎቱን ማቀዝቀዝ/ማጠርጠር (Condensation) ያካተተ ነው፡፡"
+            },
+            {
+                id: 76,
+                question: "ጉልበት (Energy) ማለት ምን ማለት ነው?",
+                options: ["ሀ) ቁስ አካል ማለት ነው", "ለ) ርቀት ማለት ነው", "ሐ) ፍጥነት ማለት ነው", "መ) ሥራን የመሥራት አቅም ነው"],
+                correct: 3,
+                explanation: "ጉልበት (Energy) ማለት ማንኛውንም ሥራ የመሥራት ወይም የመቀየር አቅም ነው፡፡"
+            },
+            {
+                id: 77,
+                question: "በቀላሉ ሊተኩ የሚችሉና ስንጠቀምባቸው የማያልቁ የጉልበት ምንጮች ምን ይባላሉ?",
+                options: ["ሀ) ታዳሽ የጉልበት ምንጮች", "ለ) ታዳሽ ያልሆኑ የጉልበት ምንጮች", "ሐ) የኬሚካል ጉልበት", "መ) የኑክሌር ጉልበት"],
+                correct: 0,
+                explanation: "በተፈጥሮ አየር፣ ፀሐይና ውሃ በፍጥነት ሊተኩ የሚችሉ ታዳሽ የጉልበት ምንጮች ይባላሉ፡፡"
+            },
+            {
+                id: 78,
+                question: "በቀላሉ ሊተኩ የማይችሉና ስንጠቀምባቸው ያልቁ የጉልበት ምንጮች የትኞቹ ናቸው?",
+                options: ["ሀ) የፀሐይ ብርሃን", "ለ) ታዳሽ ያልሆኑ የጉልበት ምንጮች", "ሐ) የንፋስ ጉልበት", "መ) የውሃ ኃይል"],
+                correct: 1,
+                explanation: "ታዳሽ ያልሆኑ የጉልበት ምንጮች (ለምሳሌ ነዳጅ፣ ከሰል) ጥቅም ላይ ሲውሉ ያልቃሉ፤ በቀላሉ አይተኩም፡፡"
+            },
+            {
+                id: 79,
+                question: "ከሚከተሉት ውስጥ ታዳሽ የጉልበት ምንጭ የሆነው የትኛው ነው?",
+                options: ["ሀ) የድንጋይ ከሰል", "ለ) ቤንዚን", "ሐ) የፀሐይ ኃይል", "መ) የባትሪ ድንጋይ"],
+                correct: 2,
+                explanation: "የፀሐይ ኃይል የማይናጥቅና ሁልጊዜ የሚገኝ ታዳሽ የጉልበት ምንጭ ነው፡፡"
+            },
+            {
+                id: 80,
+                question: "ከሚከተሉት ውስጥ ታዳሽ ያልሆነ የጉልበት ምንጭ የትኛው ነው?",
+                options: ["ሀ) ንፋስ", "ለ) ውሃ", "ሐ) የፀሐይ ብርሃን", "መ) የተፈጥሮ ነዳጅ (ቤንዚን/ናፍጣ)"],
+                correct: 3,
+                explanation: "የተፈጥሮ ነዳጅ (ቤንዚን/ናፍጣ) ተፈጥሮ ለማዘጋጀት ሚሊዮን ዓመታት የሚፈጅባት ታዳሽ ያልሆነ ምንጭ ነው፡፡"
+            },
+            {
+                id: 81,
+                question: "አንድ አካል በእንቅስቃሴው ምክንያት የሚያገኘው የጉልበት ዓይነት ምን ይባላል?",
+                options: ["ሀ) የእንቅስቃሴ ጉልበት (Kinetic energy)", "ለ) የክምችት ጉልበት", "ሐ) የሙቀት ጉልበት ብቻ", "መ) የድምፅ ጉልበት"],
+                correct: 0,
+                explanation: "የእንቅስቃሴ ጉልበት (Kinetic Energy) ማንኛውም የሚንቀሳቀስ አካል የሚኖረው ጉልበት ነው፡፡"
+            },
+            {
+                id: 82,
+                question: "አንድ አካል ባለው ቦታ ወይም አቀማመጥ ምክንያት የሚያከማቸው ጉልበት ምን ይባላል?",
+                options: ["ሀ) የእንቅስቃሴ ጉልበት", "ለ) የክምችት ጉልበት (Potential energy)", "ሐ) የብርሃን ጉልበት", "መ) የኤሌክትሪክ ጉልበት"],
+                correct: 1,
+                explanation: "የክምችት ጉልበት (Potential Energy) በአቀማመጥ ወይም ይዘት ምክንያት የሚከማች ጉልበት ነው፡፡"
+            },
+            {
+                id: 83,
+                question: "የጉልበት መደበኛ መለኪያ አሃድ (SI unit) ምን ይባላል?",
+                options: ["ሀ) ሜትር", "ለ) ኪሎግራም", "ሐ) ጁል (Joule)", "መ) ሴኮንድ"],
+                correct: 2,
+                explanation: "የጉልበትና የሥራ መደበኛ መለኪያ አሃድ ጁል (Joule / J) ይባላል፡፡"
+            },
+            {
+                id: 84,
+                question: "የጉልበት ዋና ጥቅም የሆነው የትኛው ነው?",
+                options: ["ሀ) ክብደት ለመጨመር", "ለ) ቁመት ለማጠር", "ሐ) ድብልቅን ለማዘጋጀት", "መ) ሥራን ለመሥራትና ነገሮችን ለማንቀሳቀስ"],
+                correct: 3,
+                explanation: "ጉልበት ለሁሉም ፍጥረታት ሥራን ለመሥራትና ነገሮችን ለማንቀሳቀስ አስፈላጊ ነው፡፡"
+            },
+            {
+                id: 85,
+                question: "የጉልበት መባከን በሀገር ላይ ምን ያስከትላል?",
+                options: ["ሀ) ትልቅ የኢኮኖሚና የሀብት ኪሳራ", "ለ) ዕድገት", "ሐ) ጥቅም", "መ) ምንም ጉዳት አያመጣም"],
+                correct: 0,
+                explanation: "ጉልበትን አለአግባብ ማባከን ከፍተኛ የገንዘብ፣ የሀብትና የኢኮኖሚ ጉዳት ያመጣል፡፡"
+            },
+            {
+                id: 86,
+                question: "የእጅ ባትሪ ድንጋይ፣ የሞባይል ባትሪና የመኪና ባትሪ የሚያከማቹት የጉልበት ዓይነት የትኛው ነው?",
+                options: ["ሀ) የኒዩክሌር ጉልበት", "ለ) የኬሚካል (የክምችት) ጉልበት", "ሐ) የንፋስ ጉልበት", "መ) የፀሐይ ጉልበት"],
+                correct: 1,
+                explanation: "ባትሪዎች ጉልበትን በኬሚካል መልክ አከማችተው ወደ ኤሌክትሪክ ጉልበት ይለውጣሉ፡፡"
+            },
+            {
+                id: 87,
+                question: "በኢትዮጵያ በታላቁ ህዳሴ ግድብ የሚመነጨው የኤሌክትሪክ ኃይል ምንጭ የትኛው ታዳሽ ጉልበት ነው?",
+                options: ["ሀ) የድንጋይ ከሰል", "ለ) የተፈጥሮ ጋዝ", "ሐ) የውሃ ኃይል (Hydroelectric)", "መ) የማገዶ እንጨት"],
+                correct: 2,
+                explanation: "በህዳሴው ግድብ የሚመነጨው ኤሌክትሪክ የሚመነጨው ከፈሳሽ ውሃ ኃይል (Hydroelectric) ነው፡፡"
+            },
+            {
+                id: 88,
+                question: "በቤታችን ውስጥ የኤሌክትሪክና የነዳጅ ጉልበትን በአግባቡ መጠቀም ለምን ይጠቅማል?",
+                options: ["ሀ) የሀገርንና የግል ሀብትን ከብክነት ለማዳን", "ለ) እቃዎችን ለማበላሸት", "ሐ) ብርሃን ለመቀነስ", "መ) ስራን ለማዘገየት"],
+                correct: 0,
+                explanation: "ጉልበትን በቁጠባ መጠቀም ወጪን ይቀንሳል፤ የሀገርንና የግል ሀብት ይቆጥባል፡፡"
+            },
+            {
+                id: 89,
+                question: "ኃይልን በማጎልበትና ጉልበትን በመቆጠብ ሥራን በፍጥነትና በቀላሉ ለመሥራት የሚያግዝ መሣሪያ ምን ይባላል?",
+                options: ["ሀ) ቀላል መኪና (Simple machine)", "ለ) ድብልቅ", "ሐ) ፕላዝማ", "መ) ትንከረት"],
+                correct: 0,
+                explanation: "ቀላል መኪና (Simple Machine) የኃይል አቅጣጫን በመቀየር ሥራን የሚያቀል መሳሪያ ነው፡፡"
+            },
+            {
+                id: 90,
+                question: "ከሚከተሉት ውስጥ የቀላል መኪና ምሳሌ የሆነው የትኛው ነው?",
+                options: ["ሀ) ውሃ", "ለ) ቢላዋ፣ መዶሻና አካፋ", "ሐ) አየር", "መ) ደም"],
+                correct: 1,
+                explanation: "ቢላዋ፣ መዶሻና አካፋ ጉልበትን በማቀለል ስራን የሚያከናውኑ ቀላል መኪናዎች ናቸው፡፡"
+            },
+            {
+                id: 91,
+                question: "ዋና ዋና የቀላል መኪና ዓይነቶች በስንት ይከፈላሉ?",
+                options: ["ሀ) 2", "ለ) 4", "ሐ) 6", "መ) 10"],
+                correct: 2,
+                explanation: "6 ዋና ዋና የቀላል መኪና ዓይነቶች አሉ። እነሱም፡ መፈንቅል፣ ዘንባይ ወለል፣ ሽብልቅ፣ መፍቻ፣ መዘወርና ሽክርክሪት ናቸው፡፡"
+            },
+            {
+                id: 92,
+                question: "ከባድ ዕቃዎችን ወደ ላይ ለመጫን የምንጠቀምበት ያዘመመ ወለል (ለምሳሌ ፎቅ ለመውጣት የምንጠቀምበት ደረጃ) ምን ይባላል?",
+                options: ["ሀ) ሽብልቅ", "ለ) መፈንቅል", "ሐ) መፍቻ", "መ) ዘንባይ ወለል (Inclined plane)"],
+                correct: 3,
+                explanation: "ዘንባይ ወለል (Inclined Plane) ያዘመመ ወለል ሆኖ ዕቃዎችን ወደ ላይ ለማንሳት ያገለግላል፡፡"
+            },
+            {
+                id: 93,
+                question: "ድጋፍን በመጠቀም ድንጋይ ለመፈንቀል ወይም ሚስማርን ለመንቀል የሚያገለግል ረጅም ዘንግ የትኛው ነው?",
+                options: ["ሀ) መፈንቅል (Lever)", "ለ) ዘንባይ ወለል", "ሐ) ሽብልቅ", "መ) መፍቻ"],
+                correct: 0,
+                explanation: "መፈንቅል (Lever) በቋሚ ድጋፍ ላይ በመዞር ነገሮችን ለመፈንቀል ወይም ለማንሳት ይረዳል፡፡"
+            },
+            {
+                id: 94,
+                question: "አንድን ነገር ለሁለት ለመክፈል ወይም ለመቁረጥ የሚረዳ የቀላል መኪና ዓይነት (ለምሳሌ ቢላዋ፣ መጥረቢያ) ምን ይባላል?",
+                options: ["ሀ) ሽክርክሪት", "ለ) ሽብልቅ (Wedge)", "ሐ) ዘንባይ ወለል", "መ) መፈንቅል"],
+                correct: 1,
+                explanation: "ሽብልቅ (Wedge) ነገሮችን ለመሰንጠቅ ወይም ለመቁረጥ የሚያገለግል የቀላል መኪና አይነት ነው፡፡"
+            },
+            {
+                id: 95,
+                question: "ከጉድጓድ ውስጥ ውሃን በገመድና በመዘወር ለመቅዳት የምንጠቀምበት የቀላል መኪና ዓይነት የትኛው ነው?",
+                options: ["ሀ) ሽብልቅ", "ለ) መፈንቅል", "ሐ) ሽክርክሪትና ዘንግ (Wheel and axle)", "መ) ደረጃ"],
+                correct: 2,
+                explanation: "ሽክርክሪትና ዘንግ (Wheel and Axle) ጉድጓድ ውሃ ለመቅዳትና ጎማን ለማዞር ያገለግላል፡፡"
+            },
+            {
+                id: 96,
+                question: "ነገሮችን አጥብቆ ለማሰር ወይም ጠንካራ ነገሮችን ለመሰርሰር የሚያገለግለው የቀላል መኪና ዓይነት የትኛው ነው?",
+                options: ["ሀ) መፈንቅል", "ለ) ዘንባይ ወለል", "ሐ) ሽብልቅ", "መ) መፍቻ (Screw)"],
+                correct: 3,
+                explanation: "መፍቻ (Screw) የተጠመዘዘ ዘንባይ ወለል ያለው ሆኖ እቃዎችን አጥብቆ ለማሰር ይረዳል፡፡"
+            },
+            {
+                id: 97,
+                question: "ሰንደቅ ዓላማን ወደ ላይ ለማውጣትና ለማውረድ የምንጠቀምበት ቀላል መኪና የትኛው ነው?",
+                options: ["ሀ) ሽክርክሪት (Pulley)", "ለ) ሽብልቅ", "ሐ) ቢላዋ", "መ) ደረጃ"],
+                correct: 0,
+                explanation: "መዘወር/ሽክርክሪት (Pulley) በገመድ በመታገዝ ሰንደቅ ዓላማን ወደ ላይ ለማውጣት ያገለግላል፡፡"
+            },
+            {
+                id: 98,
+                question: "አንድ አካል ወይም ቁስ በተወሰነ ርቀት ሲንቀሳቀስ ወይም ሲነሳ ምን ተሰራ ይባላል?",
+                options: ["ሀ) ጉልበት ተባከነ", "ለ) ሥራ ተሠራ (Work is done)", "ሐ) ድብልቅ ተፈጠረ", "መ) ትንፈሳ ተካሄደ"],
+                correct: 1,
+                explanation: "ኃይል አርፎበት አንድ ቁስ በኃይሉ አቅጣጫ ሲንቀሳቀስ ሥራ ተሠራ (Work is done) ይባላል፡፡"
+            },
+            {
+                id: 99,
+                question: "አንድን አካል የመግፋት ወይም የመጎተት ድርጊት ምን ይባላል?",
+                options: ["ሀ) እፍግታ", "ለ) ሙሙት", "ሐ) ኃይል (Force)", "መ) ምጋት"],
+                correct: 2,
+                explanation: "ኃይል (Force) ማለት በአንድ አካል ላይ የሚደረግ የመግፋት ወይም የመጎተት ድርጊት ነው፡፡"
+            },
+            {
+                id: 100,
+                question: "የቀላል መኪናዎች ዋና ጥቅም ምንድነው?",
+                options: ["ሀ) ጉልበትን ማባከን", "ለ) ሥራን ማክበድ", "ሐ) ጊዜን ማባከን", "መ) ጉልበትና ጊዜን በመቆጠብ ሥራን ማቅለል"],
+                correct: 3,
+                explanation: "የቀላል መኪናዎች ዋና ዓላማ የሰውን ልጅ ጉልበትና ጊዜ በመቆጠብ ሥራን ማቅለልና ማፋጠን ነው፡፡"
+            }
+        ];
+
+        /* Application State */
+        let studentInfo = { name: "", id: "" };
+        let userAnswers = new Array(quizData.length).fill(null);
+        let currentQuestionIndex = 0;
+        let timerInterval = null;
+        let secondsElapsed = 0;
+
+        /* DOM Elements */
+        const startScreen = document.getElementById('startScreen');
+        const quizScreen = document.getElementById('quizScreen');
+        const resultScreen = document.getElementById('resultScreen');
+        const quizHeaderStats = document.getElementById('quizHeaderStats');
+
+        function startQuiz(event) {
+            event.preventDefault();
+            const nameInput = document.getElementById('studentName').value.trim();
+            const idInput = document.getElementById('studentId').value.trim();
+
+            if (!nameInput || !idInput) {
+                showToast("እባክዎን ስምዎን እና መታወቂያ ቁጥርዎን ያስገቡ!");
+                return;
+            }
+
+            studentInfo.name = nameInput;
+            studentInfo.id = idInput;
+
+            startScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            quizHeaderStats.classList.remove('hidden');
+
+            startTimer();
+            renderQuestion(currentQuestionIndex);
+            renderGridModal();
+        }
+
+        function startTimer() {
+            secondsElapsed = 0;
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                secondsElapsed++;
+                const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+                const secs = String(secondsElapsed % 60).padStart(2, '0');
+                document.getElementById('timerDisplay').innerText = `${mins}:${secs}`;
+            }, 1000);
+        }
+
+        function renderQuestion(index) {
+            currentQuestionIndex = index;
+            const q = quizData[index];
+
+            document.getElementById('questionProgressText').innerText = `ጥያቄ ${index + 1} ከ ${quizData.length}`;
+            document.getElementById('questionBadge').innerText = `#${q.id}`;
+            document.getElementById('questionText').innerText = q.question;
+
+            // Category tag assignment based on question number ranges
+            const categoryTag = document.getElementById('questionCategoryTag');
+            if (q.id <= 20) categoryTag.innerText = "የደም ዑደት ሥርዓት (Circulatory System)";
+            else if (q.id <= 35) categoryTag.innerText = "የጉርምስናና ኮረዳነት ለውጦች";
+            else if (q.id <= 55) categoryTag.innerText = "የሥርዓተ ትንፈሳ (Respiratory System)";
+            else if (q.id <= 75) categoryTag.innerText = "ድብልቆችና የመለያ ዘዴዎች (Mixtures)";
+            else categoryTag.innerText = "ጉልበትና ቀላል መኪናዎች (Energy & Machines)";
+
+            // Update Progress bar
+            const answeredCount = userAnswers.filter(a => a !== null).length;
+            const progressPercent = Math.max(1, Math.round(((index + 1) / quizData.length) * 100));
+            document.getElementById('progressBar').style.width = `${progressPercent}%`;
+            document.getElementById('answeredCounterText').innerText = `የተመለሱ፡ ${answeredCount} / ${quizData.length}`;
+
+            // Render Options
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+
+            const selectedAnswer = userAnswers[index];
+            const isAnswered = selectedAnswer !== null;
+
+            q.options.forEach((optText, optIdx) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = `option-btn w-full text-left p-4 rounded-xl border font-medium text-sm md:text-base flex items-center justify-between transition-all shadow-sm `;
+
+                if (!isAnswered) {
+                    btn.className += `bg-white border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-sky-300 active:scale-[0.998]`;
+                    btn.onclick = () => selectOption(index, optIdx);
+                } else {
+                    btn.disabled = true;
+                    if (optIdx === q.correct) {
+                        // Always highlight correct answer in green
+                        btn.className += `bg-emerald-50 border-emerald-500 text-emerald-900 font-bold ring-2 ring-emerald-200`;
+                    } else if (optIdx === selectedAnswer) {
+                        // Highlight user wrong selection in red
+                        btn.className += `bg-rose-50 border-rose-500 text-rose-900 font-bold ring-2 ring-rose-200`;
+                    } else {
+                        btn.className += `bg-slate-50 border-slate-200 text-slate-400 opacity-60`;
+                    }
+                }
+
+                btn.innerHTML = `
+                    <span>${optText}</span>
+                    ${isAnswered && optIdx === q.correct ? '<span class="text-emerald-600 font-bold ml-2">✓ ትክክል</span>' : ''}
+                    ${isAnswered && optIdx === selectedAnswer && optIdx !== q.correct ? '<span class="text-rose-600 font-bold ml-2">✗ ስህተት</span>' : ''}
+                `;
+
+                optionsContainer.appendChild(btn);
+            });
+
+            // Explanation box
+            const explanationBox = document.getElementById('explanationBox');
+            if (isAnswered) {
+                explanationBox.classList.remove('hidden');
+                document.getElementById('explanationText').innerText = q.explanation;
+            } else {
+                explanationBox.classList.add('hidden');
+            }
+
+            // Buttons state
+            document.getElementById('prevBtn').disabled = (index === 0);
+            
+            const nextBtn = document.getElementById('nextBtn');
+            if (index === quizData.length - 1) {
+                nextBtn.innerText = "መጨረሻ (Last)";
+            } else {
+                nextBtn.innerHTML = `<span>ቀጣይ (Next)</span><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>`;
+            }
+
+            updateGridModalHighlight();
+        }
+
+        function selectOption(questionIdx, optionIdx) {
+            if (userAnswers[questionIdx] !== null) return; // Prevent changing existing answers
+            userAnswers[questionIdx] = optionIdx;
+            renderQuestion(questionIdx);
+            renderGridModal();
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < quizData.length - 1) {
+                renderQuestion(currentQuestionIndex + 1);
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                renderQuestion(currentQuestionIndex - 1);
+            }
+        }
+
+        function toggleGridModal() {
+            const modal = document.getElementById('gridModal');
+            modal.classList.toggle('hidden');
+        }
+
+        function renderGridModal() {
+            const grid = document.getElementById('questionGrid');
+            grid.innerHTML = '';
+
+            quizData.forEach((q, idx) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = `p-2 rounded-lg font-bold text-xs flex flex-col items-center justify-center transition `;
+
+                const ans = userAnswers[idx];
+                if (idx === currentQuestionIndex) {
+                    btn.className += `bg-sky-600 text-white ring-2 ring-sky-300`;
+                } else if (ans === null) {
+                    btn.className += `bg-slate-100 hover:bg-slate-200 text-slate-700`;
+                } else if (ans === q.correct) {
+                    btn.className += `bg-emerald-500 text-white`;
+                } else {
+                    btn.className += `bg-rose-500 text-white`;
+                }
+
+                btn.innerText = idx + 1;
+                btn.onclick = () => {
+                    renderQuestion(idx);
+                    toggleGridModal();
+                };
+                grid.appendChild(btn);
+            });
+        }
+
+        function updateGridModalHighlight() {
+            // Re-render when current question changes
+            const gridBtns = document.getElementById('questionGrid').children;
+            if (gridBtns.length === quizData.length) {
+                for (let i = 0; i < gridBtns.length; i++) {
+                    if (i === currentQuestionIndex) {
+                        gridBtns[i].classList.add('ring-2', 'ring-sky-400');
+                    } else {
+                        gridBtns[i].classList.remove('ring-2', 'ring-sky-400');
+                    }
+                }
+            }
+        }
+
+        function confirmSubmit() {
+            const unanswered = userAnswers.filter(a => a === null).length;
+            if (unanswered > 0) {
+                const confirmChoice = window.confirm(`እስካሁን ያልመለሷቸው ${unanswered} ጥያቄዎች አሉ። ፈተናውን ማስረከብ እርግጠኛ ነዎት?`);
+                if (!confirmChoice) return;
+            }
+            finishQuiz();
+        }
+
+        function finishQuiz() {
+            clearInterval(timerInterval);
+
+            quizScreen.classList.add('hidden');
+            quizHeaderStats.classList.add('hidden');
+            resultScreen.classList.remove('hidden');
+
+            // Calculate Score
+            let correctCount = 0;
+            let wrongCount = 0;
+            let unansweredCount = 0;
+
+            quizData.forEach((q, idx) => {
+                const userAns = userAnswers[idx];
+                if (userAns === null) {
+                    unansweredCount++;
+                } else if (userAns === q.correct) {
+                    correctCount++;
+                } else {
+                    wrongCount++;
+                }
+            });
+
+            const percentage = Math.round((correctCount / quizData.length) * 100);
+
+            // Time Formatting
+            const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+            const secs = String(secondsElapsed % 60).padStart(2, '0');
+            const timeStr = `${mins}:${secs}`;
+
+            // Render stats
+            document.getElementById('scoreDisplay').innerText = `${correctCount} / ${quizData.length}`;
+            document.getElementById('scorePercentage').innerText = `የማለፊያ ውጤት፡ ${percentage}%`;
+            document.getElementById('studentSummaryDetail').innerText = `ተማሪ፡ ${studentInfo.name} | መታወቂያ (ID): ${studentInfo.id}`;
+
+            document.getElementById('correctCount').innerText = correctCount;
+            document.getElementById('wrongCount').innerText = wrongCount;
+            document.getElementById('unansweredCount').innerText = unansweredCount;
+            document.getElementById('totalTimeSpent').innerText = timeStr;
+
+            // Grade status badge
+            const badge = document.getElementById('gradeBadge');
+            const banner = document.getElementById('scoreBanner');
+            if (percentage >= 80) {
+                badge.innerText = "በጣም ከፍተኛ ውጤት (Excellent)";
+                badge.className = "inline-block px-4 py-1 rounded-full text-xs font-bold bg-emerald-400 text-emerald-950 uppercase";
+                banner.className = "bg-emerald-900 text-white p-6 md:p-8 text-center space-y-3";
+            } else if (percentage >= 50) {
+                badge.innerText = "አልፈዋል (Passed)";
+                badge.className = "inline-block px-4 py-1 rounded-full text-xs font-bold bg-sky-300 text-sky-950 uppercase";
+                banner.className = "bg-slate-900 text-white p-6 md:p-8 text-center space-y-3";
+            } else {
+                badge.innerText = "ድጋሜ መከለስ ያስፈልጋል (Needs Revision)";
+                badge.className = "inline-block px-4 py-1 rounded-full text-xs font-bold bg-rose-400 text-rose-950 uppercase";
+                banner.className = "bg-rose-950 text-white p-6 md:p-8 text-center space-y-3";
+            }
+
+            renderReviewList('all');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderReviewList(filterType) {
+            const container = document.getElementById('reviewContainer');
+            container.innerHTML = '';
+
+            quizData.forEach((q, idx) => {
+                const userAns = userAnswers[idx];
+                const isCorrect = userAns === q.correct;
+                const isSkipped = userAns === null;
+
+                if (filterType === 'wrong' && isCorrect) return;
+
+                const card = document.createElement('div');
+                card.className = `p-4 rounded-xl border text-sm space-y-2 ${
+                    isCorrect 
+                    ? 'bg-emerald-50/50 border-emerald-200' 
+                    : isSkipped 
+                    ? 'bg-amber-50/50 border-amber-200' 
+                    : 'bg-rose-50/50 border-rose-200'
+                }`;
+
+                let statusBadge = isCorrect 
+                    ? '<span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded">✓ ትክክል</span>' 
+                    : isSkipped 
+                    ? '<span class="text-xs font-bold text-amber-700 bg-amber-100 px-2.5 py-0.5 rounded">? ያልተመለሰ</span>' 
+                    : '<span class="text-xs font-bold text-rose-700 bg-rose-100 px-2.5 py-0.5 rounded">✗ ስህተት</span>';
+
+                let userChoiceText = isSkipped ? "ያልተመለሰ" : q.options[userAns];
+                let correctChoiceText = q.options[q.correct];
+
+                card.innerHTML = `
+                    <div class="flex items-start justify-between gap-2">
+                        <p class="font-bold text-slate-800">${idx + 1}. ${q.question}</p>
+                        ${statusBadge}
+                    </div>
+                    <div class="text-xs space-y-1 text-slate-700">
+                        <p><span class="font-semibold text-slate-500">የእርስዎ መልስ፡</span> <span class="${isCorrect ? 'text-emerald-700 font-bold' : 'text-rose-700 font-bold'}">${userChoiceText}</span></p>
+                        ${!isCorrect ? `<p><span class="font-semibold text-slate-500">ትክክለኛው መልስ፡</span> <span class="text-emerald-700 font-bold">${correctChoiceText}</span></p>` : ''}
+                    </div>
+                    <p class="text-xs text-slate-600 bg-white/70 p-2.5 rounded-lg border border-slate-200 leading-relaxed">
+                        <strong class="text-indigo-900">ማብራሪያ፡</strong> ${q.explanation}
+                    </p>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        function filterReview(type) {
+            renderReviewList(type);
+        }
+
+        function sendEmailToTeacher() {
+            const recipient = "mesayferedegn2@gmail.com";
+            const subject = encodeURIComponent(`Grade 6 Science Quiz Results - ${studentInfo.name} (${studentInfo.id})`);
+            
+            const correctCount = userAnswers.filter((a, idx) => a === quizData[idx].correct).length;
+            const percentage = Math.round((correctCount / quizData.length) * 100);
+            const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+            const secs = String(secondsElapsed % 60).padStart(2, '0');
+
+            let bodyContent = `የተማሪ አካባቢ ሳይንስ ምዘና ውጤት መግለጫ\n`;
+            bodyContent += `=====================================\n`;
+            bodyContent += `የተማሪ ሙሉ ስም: ${studentInfo.name}\n`;
+            bodyContent += `የተማሪ መታወቂያ (ID): ${studentInfo.id}\n`;
+            bodyContent += `የፈተና ርዕስ: ክፍል 6 አካባቢ ሳይንስ - ምዕራፍ ሁለት (100 ጥያቄዎች)\n`;
+            bodyContent += `የተገኘ ውጤት: ${correctCount} / 100 (${percentage}%)\n`;
+            bodyContent += `የፈጀው ጊዜ: ${mins}:${secs}\n`;
+            bodyContent += `ቀን: ${new Date().toLocaleDateString('am-ET')}\n`;
+            bodyContent += `=====================================\n\n`;
+            bodyContent += `ይህ ኢሜይል በስርዓቱ አውቶማቲክ የተዘጋጀ የፈተና ውጤት ማሳወቂያ ነው፡፡`;
+
+            const mailtoUrl = `mailto:${recipient}?subject=${subject}&body=${encodeURIComponent(bodyContent)}`;
+            window.location.href = mailtoUrl;
+            showToast("የኢሜይል መላኪያ መተግበሪያ ተከፍቷል!");
+        }
+
+        function copyResultsToClipboard() {
+            const correctCount = userAnswers.filter((a, idx) => a === quizData[idx].correct).length;
+            const percentage = Math.round((correctCount / quizData.length) * 100);
+            
+            const textToCopy = `የተማሪ ውጤት መግለጫ
+ተማሪ: ${studentInfo.name}
+ID: ${studentInfo.id}
+ውጤት: ${correctCount}/100 (${percentage}%)
+ክፍል 6 አካባቢ ሳይንስ ምዕራፍ 2`;
+
+            const tempInput = document.createElement("textarea");
+            tempInput.value = textToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            showToast("ውጤቱ ወደ Clipboard ተገልብጧል!");
+        }
+
+        function restartQuiz() {
+            if (confirm("ፈተናውን በድጋሚ ለመጀመር እርግጠኛ ነዎት?")) {
+                userAnswers = new Array(quizData.length).fill(null);
+                currentQuestionIndex = 0;
+                resultScreen.classList.add('hidden');
+                startScreen.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').innerText = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
